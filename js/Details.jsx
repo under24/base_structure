@@ -29,10 +29,7 @@ class Details extends Component {
           <h1>{title}</h1>
           {ratingComponent}
           <h2>({year})</h2>
-          <img
-            src={`/public/img/posters/${poster}`}
-            alt={`Poster for ${title}`}
-          />
+          <img src={`/img/posters/${poster}`} alt={`Poster for ${title}`} />
           <p>{description}</p>
         </section>
         <div>
