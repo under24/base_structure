@@ -6,10 +6,9 @@ import store from './redux/store';
 import Landing from './pages/Landing';
 import Search from './pages/Search';
 import Details from './pages/Details';
+import NotFound from './pages/NotFound';
 import preload from '../data.json';
 import './App.scss';
-
-const NotFound = () => <h1>404 page</h1>;
 
 const App = () => (
   <BrowserRouter>
@@ -37,6 +36,10 @@ const App = () => (
     </Provider>
   </BrowserRouter>
 );
+
+App.defaultProps = {
+  match: {}
+};
 
 App.propTypes = {
   match: PropTypes.objectOf(PropTypes.mixed)
