@@ -1,0 +1,13 @@
+.app {
+  color: red;
+  
+  &__node {
+    color: green;
+  }
+}
+
+#app {
+  a {
+    color: green;
+  }
+}

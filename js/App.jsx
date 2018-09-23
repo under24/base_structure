@@ -7,6 +7,7 @@ import Landing from './Landing';
 import Search from './Search';
 import Details from './Details';
 import preload from '../data.json';
+import './App.scss';
 
 const NotFound = () => <h1>404 page</h1>;
 
