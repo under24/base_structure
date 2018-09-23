@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAPIDetails } from './actionCreators';
+import { getAPIDetails } from './thunks';
 import Header from './Header';
 import Spinner from './Spinner';
 
