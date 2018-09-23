@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Landing from './pages/Landing';
@@ -24,7 +23,7 @@ const App = () => (
             path="/details/:id"
             component={props => {
               const currentShow = preload.shows.find(
-                show => props.match.params.id === show.imdbID
+                show => props.match.params.id === show.imdbID //eslint-disable-line
               );
 
               return <Details show={currentShow} {...props} />;
@@ -36,13 +35,5 @@ const App = () => (
     </Provider>
   </BrowserRouter>
 );
-
-App.defaultProps = {
-  match: {}
-};
-
-App.propTypes = {
-  match: PropTypes.objectOf(PropTypes.mixed)
-};
 
 export default App;
