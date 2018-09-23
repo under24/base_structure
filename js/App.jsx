@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import Landing from './Landing';
-import Search from './Search';
-import Details from './Details';
+import Landing from './pages/Landing';
+import Search from './pages/Search';
+import Details from './pages/Details';
 import preload from '../data.json';
 import './App.scss';
 

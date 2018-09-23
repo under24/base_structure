@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAPIDetails } from './redux/thunks';
-import Header from './Header';
-import Spinner from './Spinner';
+import { getAPIDetails } from '../redux/thunks';
+import Header from '../components/Header';
+import Spinner from '../components/Spinner';
 
 class Details extends Component {
   componentDidMount() {

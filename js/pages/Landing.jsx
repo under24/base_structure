@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setSearchTerm } from './redux/actionCreators';
+import { setSearchTerm } from '../redux/actionCreators';
 
 class Landing extends Component {
   goToSearch = event => {
