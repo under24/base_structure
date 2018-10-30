@@ -2,7 +2,7 @@
   display: flex;
   
   &__item {
-    padding: 8px 16px 11px;
+    padding: 12px 16px 14px;
     text-align: center;
     
     &:first-child {
@@ -17,10 +17,11 @@
     font-weight: bold;
   }
   
-  &__item-value{
+  &__item-value {
     display: block;
     color: #fff;
     font-size: 18px;
     opacity: 0.8;
+    line-height: 18px;
   }
 }
