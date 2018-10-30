@@ -49,13 +49,23 @@ export const addTmdbPeopleBatchedData = data => {
     voteCount: imageObj.vote_count
   }));
 
-  // totalPages: response.total_pages,
-  // totaResults: response.total_results,
-  // [`page${response.page}`]: response.results
-
-  debugger;
-
-  const taggedImages = data.taggedImages;
+  const taggedImages = {
+    totalPages: data.taggedImages.total_pages,
+    totaResults: data.taggedImages.total_results,
+    pages: {
+      [`${data.taggedImages.page}`]: data.taggedImages.results.map(
+        taggedImageData => ({
+          aspectRatio: taggedImageData.aspect_ratio,
+          image: taggedImageData.file_path,
+          height: taggedImageData.height,
+          voteAverage: taggedImageData.vote_average,
+          voteCount: taggedImageData.vote_count,
+          width: taggedImageData.width,
+          media: utils.formatTaggedImageMediaObject(taggedImageData)
+        })
+      )
+    }
+  };
 
   return {
     type: ADD_TMDB_PEOPLE_BATCHED_DATA,

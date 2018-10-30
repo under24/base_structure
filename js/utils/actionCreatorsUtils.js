@@ -87,6 +87,17 @@ const actionCreatorsUtils = {
 
     return result;
   },
+  formatTaggedImageMediaObject(data) {
+    let result;
+
+    if (data.media_type === 'movie') {
+      result = this.formatMovieObject(data.media);
+    } else if (data.media_type === 'tv') {
+      result = this.formatTvObject(data.media);
+    }
+
+    return result;
+  },
   formatMovieObject(data) {
     const link = this.generateLink(
       'movies',
