@@ -18,27 +18,23 @@ const PersonInfoBlock = props => (
       <span className="PersonInfoBlock__item-label">Фильмы</span>
     </div>
     <div className="PersonInfoBlock__item">
-      <span className="PersonInfoBlock__item-value">0</span>
+      <span className="PersonInfoBlock__item-value">{props.other}</span>
       <span className="PersonInfoBlock__item-label">Другое</span>
-    </div>
-    <div className="PersonInfoBlock__item">
-      <span className="PersonInfoBlock__item-value">{props.all}</span>
-      <span className="PersonInfoBlock__item-label">Всего</span>
     </div>
   </div>
 );
 
 PersonInfoBlock.defaultProps = {
-  all: 0,
   tv: 0,
   movie: 0,
+  other: 0,
   popularity: 0
 };
 
 PersonInfoBlock.propTypes = {
-  all: PropTypes.number,
   tv: PropTypes.number,
   movie: PropTypes.number,
+  other: PropTypes.number,
   popularity: PropTypes.number
 };
 
@@ -52,36 +48,24 @@ const mapStateToProps = (state, ownProps) => {
       props.popularity = person.details.popularity;
     }
 
-    // if (person.credits) {
-    //   const credits = person.credits;
-    //
-    //
-    // }
-  }
-
-  if (state.person[ownProps.tmdbId] && state.person[ownProps.tmdbId].credits) {
-    if (state.person[ownProps.tmdbId].credits.cast.length) {
-      let all = 0;
-      let tv = 0;
+    if (person.credits) {
       let movie = 0;
+      let tv = 0;
+      let other = 0;
 
-      state.person[ownProps.tmdbId].credits.cast.forEach(item => {
-        all += 1;
-
+      person.credits.cast.forEach(item => {
         if (item.mediaType === 'movie') {
           movie += 1;
-        }
-
-        if (item.mediaType === 'tv') {
+        } else if (item.mediaType === 'tv') {
           tv += 1;
         }
       });
-      props.all = all;
-      props.tv = tv;
+
+      person.credits.crew.forEach(() => (other += 1));
+
       props.movie = movie;
-    }
-    if (state.person[ownProps.tmdbId].credits.crew.length) {
-      // debugger;
+      props.tv = tv;
+      props.other = other;
     }
   }
 
