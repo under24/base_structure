@@ -3,32 +3,30 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Landing from './pages/Landing';
-import Search from './pages/Search';
-import Details from './pages/Details';
 import NotFound from './pages/NotFound';
-import preload from '../data.json';
+import Movies from './pages/Movies';
+import Movie from './pages/Movie';
+import Person from './pages/person/Person';
 import './App.scss';
 
 const App = () => (
   <BrowserRouter>
     <Provider store={store}>
-      <div className="app">
+      <div className="App">
         <Switch>
+          {/* home page */}
           <Route exact path="/" component={Landing} />
-          <Route
-            path="/search"
-            component={props => <Search shows={preload.shows} {...props} />}
-          />
-          <Route
-            path="/details/:id"
-            component={props => {
-              const currentShow = preload.shows.find(
-                show => props.match.params.id === show.imdbID //eslint-disable-line
-              );
 
-              return <Details show={currentShow} {...props} />;
-            }}
-          />
+          {/* movies page */}
+          <Route exact path="/movies" component={Movies} />
+
+          {/* movie summary page */}
+          <Route path="/movies/:slug" component={Movie} />
+
+          {/* person page */}
+          <Route path="/people/:tmdbId" component={Person} />
+
+          {/* 404 page */}
           <Route component={NotFound} />
         </Switch>
       </div>

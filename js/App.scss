@@ -1,5 +1,37 @@
-.app {
-  & .example {
-    color: red;
+.App {
+  // grid responsive layout
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    
+    @media (min-width: 576px) {
+      max-width: 540px;
+    }
+    
+    @media (min-width: 768px) {
+      max-width: 720px;
+    }
+    
+    @media (min-width: 992px) {
+      max-width: 960px;
+    }
+    
+    @media (min-width: 1200px) {
+      max-width: 1140px;
+    }
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  // font-family: 'Open Sans Condensed', sans-serif;
+  // font-family: 'Roboto', sans-serif;
+  // font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Exo 2', sans-serif;
+  color: rgba(0, 0, 0, 0.75);
+  line-height: 1.4;
 }

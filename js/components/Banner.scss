@@ -1,0 +1,44 @@
+.Banner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  &__overlay {
+    background-color: black;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  &__image {
+    background-image: url(https://walter.trakt.tv/images/movies/000/216/715/fanarts/full/87a95341f6.jpg.webp);
+    background-position: center 10%;
+    background-size: cover;
+  }
+  
+  &__image,
+  &__overlay,
+  &__no-banner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  &__no-banner {
+    background-color: black;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 100;
+  }
+  20% {
+    opacity: 100;
+  }
+  100% {
+    opacity: 0;
+  }
+}

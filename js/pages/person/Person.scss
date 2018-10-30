@@ -1,0 +1,39 @@
+.Person {
+  main .left-container {
+    width: 190px;
+    padding: 0px 10px;
+    margin-top: -180px;
+    position: relative;
+  }
+  
+  main .center-container {
+    flex: 1;
+    padding: 30px 10px;
+  }
+  
+  main .right-container {
+    width: 202px;
+    padding: 30px 0px 30px 10px;
+    
+    .container-block {
+      margin-bottom: 30px;
+    }
+    
+    .container-block:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  main .container {
+    display: flex;
+  }
+  
+  footer .black-divider {
+    height: 435px;
+    background: rgba(109, 109, 109, 0.8);
+  }
+  
+  footer .container {
+    padding: 30px 0;
+  }
+}

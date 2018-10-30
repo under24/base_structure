@@ -7,7 +7,7 @@ import App from './App';
 // Perf.start();
 
 const renderApp = () => {
-  render(<App />, document.getElementById('app'));
+  render(<App />, document.getElementById('root'));
 };
 
 renderApp();
