@@ -14,10 +14,10 @@ const actionCreatorsUtils = {
 
     return age;
   },
-  generateLink(page, tmdbId, seoPhrase, date) {
+  generateLink(page, tmdbId, description, date) {
     let nameURL = '';
-    if (seoPhrase) {
-      const nameFormatted = seoPhrase
+    if (description) {
+      const nameFormatted = description
         .replace(/[^\w\s]/gi, '')
         .trim()
         .toLowerCase()
