@@ -42,46 +42,50 @@ const actionCreatorsUtils = {
       console.warn('no input data to work with');
     }
 
-    let mediaObj;
+    let result = null;
+
     if (castItem.media_type === 'movie') {
-      mediaObj = this.formatMovieObject(castItem);
+      result = {
+        ...this.formatMovieObject(castItem),
+        character: castItem.character || '',
+        creditId: castItem.credit_id || ''
+      };
     } else if (castItem.media_type === 'tv') {
-      mediaObj = this.formatTvObject(castItem);
+      result = {
+        ...this.formatTvObject(castItem),
+        character: castItem.character || '',
+        creditId: castItem.credit_id || '',
+        episodeCount: castItem.episode_count || 0
+      };
     }
 
-    return {
-      ...mediaObj,
-      backdrop: castItem.backdrop_path || '',
-      character: castItem.character || '',
-      creditId: castItem.credit_id || '',
-      genres: castItem.genre_ids || [],
-      id: castItem.id,
-      mediaType: 'movie',
-      originalLanguage: castItem.original_language || '',
-      overview: castItem.overview || '',
-      popularity: castItem.popularity || 0,
-      poster: castItem.poster_path || '',
-      voteAverage: castItem.vote_average || 0,
-      voteCount: castItem.vote_count || 0
-    };
+    return result;
   },
   formatCrew(crewItem) {
     if (!crewItem) {
       console.warn('no input data to work with');
     }
 
-    let mediaObj;
+    let result;
+
     if (crewItem.media_type === 'movie') {
-      mediaObj = this.formatMovieObject(crewItem);
+      result = {
+        ...this.formatMovieObject(crewItem),
+        creditId: crewItem.credit_id || '',
+        department: crewItem.department || '',
+        job: crewItem.job || ''
+      };
     } else if (crewItem.media_type === 'tv') {
-      mediaObj = this.formatTvObject(crewItem);
+      result = {
+        ...this.formatTvObject(crewItem),
+        creditId: crewItem.credit_id || '',
+        department: crewItem.department || '',
+        episodeCount: crewItem.episode_count || 0,
+        job: crewItem.job || ''
+      };
     }
 
-    return {
-      ...mediaObj,
-      department: crewItem.department || '',
-      job: crewItem.job || ''
-    };
+    return result;
   },
   formatMovieObject(data) {
     const link = this.generateLink(
@@ -92,10 +96,22 @@ const actionCreatorsUtils = {
     );
 
     return {
-      title: data.title || '',
-      originalTitle: data.original_title || '',
+      link,
+      mediaType: 'movie',
+      adult: data.adult || false,
+      backdrop: data.backdrop_path || '',
+      genres: data.genre_ids || [],
+      id: data.id,
+      originalLanguage: data.original_language || '',
+      originalTItle: data.original_title || '',
+      overview: data.overview || '',
+      popularity: data.popularity || 0,
+      poster: data.poster_path || '',
       releaseDate: data.release_date || '',
-      link
+      title: data.title || '',
+      video: data.video || false,
+      voteAverage: data.vote_average || 0,
+      voteCount: data.vote_count || 0
     };
   },
   formatTvObject(data) {
@@ -107,12 +123,21 @@ const actionCreatorsUtils = {
     );
 
     return {
-      title: data.name || '',
-      originalTitle: data.original_name || '',
-      originCountry: data.origin_country || [],
-      episodes: data.episode_count || 0,
+      link,
+      mediaType: 'tv',
+      backdrop: data.backdrop_path || '',
       releaseDate: data.first_air_date || '',
-      link
+      genres: data.genre_ids || [],
+      id: data.id,
+      title: data.name || '',
+      originCountry: data.origin_country || [],
+      originalLanguage: data.original_language || '',
+      originalTitle: data.original_name || '',
+      overview: data.overview || '',
+      popularity: data.popularity || 0,
+      poster: data.poster_path || '',
+      voteAverage: data.vote_average || 0,
+      voteCount: data.vote_count || 0
     };
   }
 };
