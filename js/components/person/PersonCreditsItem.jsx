@@ -73,9 +73,9 @@ const PersonCreditsItem = props => {
       <div className="item-inner-container">
         {img}
         <div className="item-details-text-container">
+          {releaseDate}
           {title}
           {originalTitle}
-          {releaseDate}
           {character}
         </div>
         {backdrop}

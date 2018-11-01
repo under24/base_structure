@@ -1,5 +1,10 @@
 import tmdb from '../../utils/tmdb';
-import { addTmdbPeopleBatchedData } from '../actionCreators/person';
+import {
+  addTmdbPeopleBatchedData,
+  addTmdbPeopleExternalIds,
+  addTmdbPeopleImages,
+  addTmdbPeopleCombinedCredits
+} from '../actionCreators/person';
 
 export const requestPersonData = tmdbId => dispatch => {
   tmdb
@@ -32,12 +37,18 @@ export const requestPersonData = tmdbId => dispatch => {
           popularity: response.popularity,
           profile_path: response.profile_path
         },
-        combinedCredits: response.combined_credits,
-        externalIds: response.external_ids,
-        images: response.images,
+        // combinedCredits: response.combined_credits,
+        // externalIds: response.external_ids,
+        // images: response.images,
         taggedImages: response.tagged_images
       };
+
       dispatch(addTmdbPeopleBatchedData(mappedData));
+      dispatch(addTmdbPeopleImages(response.id, response.images));
+      dispatch(addTmdbPeopleExternalIds(response.id, response.external_ids));
+      dispatch(
+        addTmdbPeopleCombinedCredits(response.id, response.combined_credits)
+      );
     })
     .catch(error => {
       debugger;

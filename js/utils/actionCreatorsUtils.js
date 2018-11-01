@@ -37,6 +37,28 @@ const actionCreatorsUtils = {
 
     return `/${page}/${tmdbId}${nameURL}${dateURL}`;
   },
+  formatCombinedCast(cast) {
+    const movie = [];
+    const tv = [];
+    const combined = [];
+
+    cast.forEach(castItem => {
+      const formattedCastItem = this.formatCast(castItem);
+
+      switch (formattedCastItem.mediaType) {
+        case 'movie':
+          movie.push(formattedCastItem);
+          break;
+        case 'tv':
+          tv.push(formattedCastItem);
+          break;
+      }
+
+      combined.push(formattedCastItem);
+    });
+
+    return { movie, tv, combined };
+  },
   formatCast(castItem) {
     if (!castItem) {
       console.warn('no input data to work with');
@@ -114,7 +136,7 @@ const actionCreatorsUtils = {
       genres: data.genre_ids || [],
       id: data.id,
       originalLanguage: data.original_language || '',
-      originalTItle: data.original_title || '',
+      originalTitle: data.original_title || '',
       overview: data.overview || '',
       popularity: data.popularity || 0,
       poster: data.poster_path || '',

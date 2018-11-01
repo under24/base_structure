@@ -1,26 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import InfoBlockItem from '../InfoBlockItem';
 import './PersonInfoBlock.scss';
 
 const PersonInfoBlock = props => (
   <div className="PersonInfoBlock">
-    <div className="PersonInfoBlock__item">
-      <span className="PersonInfoBlock__item-value">{props.popularity}</span>
-      <span className="PersonInfoBlock__item-label">Популярность</span>
-    </div>
-    <div className="PersonInfoBlock__item">
-      <span className="PersonInfoBlock__item-value">{props.tv}</span>
-      <span className="PersonInfoBlock__item-label">ТВ-Шоу</span>
-    </div>
-    <div className="PersonInfoBlock__item">
-      <span className="PersonInfoBlock__item-value">{props.movie}</span>
-      <span className="PersonInfoBlock__item-label">Фильмы</span>
-    </div>
-    <div className="PersonInfoBlock__item">
-      <span className="PersonInfoBlock__item-value">{props.other}</span>
-      <span className="PersonInfoBlock__item-label">Другое</span>
-    </div>
+    <InfoBlockItem value={props.popularity} label="Популярность" />
+    <InfoBlockItem value={props.tv} label="ТВ-Шоу" />
+    <InfoBlockItem value={props.movie} label="Фильмы" />
+    <InfoBlockItem value={props.other} label="Другое" />
   </div>
 );
 
@@ -49,23 +38,9 @@ const mapStateToProps = (state, ownProps) => {
     }
 
     if (person.credits) {
-      let movie = 0;
-      let tv = 0;
-      let other = 0;
-
-      person.credits.cast.forEach(item => {
-        if (item.mediaType === 'movie') {
-          movie += 1;
-        } else if (item.mediaType === 'tv') {
-          tv += 1;
-        }
-      });
-
-      person.credits.crew.forEach(() => (other += 1));
-
-      props.movie = movie;
-      props.tv = tv;
-      props.other = other;
+      props.movie = person.credits.cast.movie.length;
+      props.tv = person.credits.cast.tv.length;
+      props.other = person.credits.crew.length;
     }
   }
 

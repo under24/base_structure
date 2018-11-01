@@ -6,19 +6,18 @@ import './PersonCredits.scss';
 
 class PersonCredits extends Component {
   state = {
-    renderMode: 'all',
-    renderUnpopular: false,
+    renderMode: 'combined', // 'movie', 'tv', 'combined'
+    // renderUnpopular: false,
     sortBy: 'date', // 'date', 'voteAverage', 'popularity',
     filterValue: ''
   };
 
-  setRenderMode = renderMode => {
-    this.setState({ renderMode });
-  };
-
   handleRenderMode = event => {
-    const renderMode = event.currentTarget.dataset.controls;
-    this.setRenderMode(renderMode);
+    const renderMode = event.currentTarget.dataset.renderMode;
+
+    this.setState({
+      renderMode
+    });
   };
 
   handleFilterValueChange = event => {
@@ -27,129 +26,86 @@ class PersonCredits extends Component {
     });
   };
 
-  adaptDate = dateString => dateString.slice(0, 4);
+  getRenderControls() {
+    return (
+      <div className="PersonCredits__controls">
+        <button
+          onClick={this.handleRenderMode}
+          data-render-mode="combined"
+          className={this.state.renderMode === 'combined' ? 'highlighted' : ''}
+        >
+          combined<sup>{this.props.combined.length}</sup>
+        </button>
+        <button
+          onClick={this.handleRenderMode}
+          data-render-mode="tv"
+          className={this.state.renderMode === 'tv' ? 'highlighted' : ''}
+        >
+          tv<sup>{this.props.tv.length}</sup>
+        </button>
+        <button
+          onClick={this.handleRenderMode}
+          data-render-mode="movie"
+          className={this.state.renderMode === 'movie' ? 'highlighted' : ''}
+        >
+          movie<sup>{this.props.movie.length}</sup>
+        </button>
+      </div>
+    );
+  }
 
-  adaptItemData(data) {
-    let result = {};
+  getFilterControls() {
+    return (
+      <div>
+        <input
+          type="text"
+          value={this.state.filterValue}
+          onChange={this.handleFilterValueChange}
+        />
+      </div>
+    );
+  }
 
-    if (data.media_type === 'movie') {
-      result = {
-        poster: data.poster_path || '',
-        backdrop: data.backdrop_path || '',
-        title: data.title || '',
-        originalTitle: data.original_title || '',
-        character: data.character || '',
-        castInEpisodes: '',
-        releaseDate: data.release_date ? this.adaptDate(data.release_date) : '',
-        mediaType: 'movie'
-      };
-    } else if (data.media_type === 'tv') {
-      result = {
-        poster: data.poster_path || '',
-        backdrop: data.backdrop_path || '',
-        title: data.name || '',
-        originalTitle: data.original_name || '',
-        character: data.character || '',
-        castInEpisodes: data.episode_count ? String(data.episode_count) : '',
-        releaseDate: data.first_air_date
-          ? this.adaptDate(data.first_air_date)
-          : '',
-        mediaType: 'tv'
-      };
-    }
-
-    return result;
+  getSortControls() {
+    return <div>sort</div>;
   }
 
   render() {
-    let cast = '';
-    if (
-      this.props.credits &&
-      this.props.credits.cast &&
-      this.props.credits.cast.length
-    ) {
-      cast = (
-        <div>
-          <div>cast</div>
-          <div className="PersonCredits__controls">
-            <button
-              onClick={this.handleRenderMode}
-              data-controls="all"
-              className={this.state.renderMode === 'all' ? 'highlighted' : ''}
-            >
-              all
-            </button>
-            <button
-              onClick={this.handleRenderMode}
-              data-controls="tv"
-              className={this.state.renderMode === 'tv' ? 'highlighted' : ''}
-            >
-              tv
-            </button>
-            <button
-              onClick={this.handleRenderMode}
-              data-controls="movie"
-              className={this.state.renderMode === 'movie' ? 'highlighted' : ''}
-            >
-              movie
-            </button>
-          </div>
-          <div className="PersonCredits__filter">
-            <input
-              type="text"
-              value={this.state.filterValue}
-              onChange={this.handleFilterValueChange}
-            />
-          </div>
-
-          {this.props.credits.cast
-            // .filter(data => {
-            //   debugger;
-            //   const searchStr = `${data.title} ${
-            //     data.original_title
-            //   }`.toLowerCase();
-            //
-            //   return (
-            //     searchStr.indexOf(this.state.filterValue.toLowerCase()) !== -1
-            //   );
-            // })
-            .filter(data => {
-              if (this.state.renderMode === 'all') {
-                return true;
-              } else if (this.state.renderMode === data.media_type) {
-                return true;
-              }
-
-              return false;
-            })
-            .filter(data => data.popularity > 1)
-            // .filter((data, index) => index < 10)
-            .sort((a, b) => b.year - a.year)
-            .map(data => {
-              const adaptedData = this.adaptItemData(data);
-
-              return (
-                <PersonCreditsItem
-                  key={data.credit_id}
-                  poster={adaptedData.poster}
-                  backdrop={adaptedData.backdrop}
-                  title={adaptedData.title}
-                  originalTitle={adaptedData.originalTitle}
-                  character={adaptedData.character}
-                  castInEpisodes={adaptedData.castInEpisodes}
-                  releaseDate={adaptedData.releaseDate}
-                  mediaType={adaptedData.mediaType}
-                />
-              );
-            })}
-        </div>
-      );
-    }
-
     return (
       <div className={`PersonCredits ${this.props.className}`}>
         <div className="PersonCredits__title">Фильмография:</div>
-        {cast}
+        <div className="PersonCredits__controls-container">
+          {this.getRenderControls()}
+          {this.getFilterControls()}
+          {this.getSortControls()}
+        </div>
+        {this.props[this.state.renderMode]
+          .filter(data => {
+            const searchStr = `${data.title} ${
+              data.originalTitle
+            }`.toLowerCase();
+
+            return (
+              searchStr.indexOf(this.state.filterValue.toLowerCase()) !== -1
+            );
+          })
+          // .filter(data => data.popularity > 1)
+          .sort((a, b) => +new Date(b.releaseDate) - +new Date(a.releaseDate))
+          .map(item => {
+            return (
+              <PersonCreditsItem
+                key={item.creditId}
+                poster={item.poster}
+                backdrop={item.backdrop}
+                title={item.title}
+                originalTitle={item.originalTitle}
+                character={item.character}
+                castInEpisodes={item.episodeCount}
+                releaseDate={item.releaseDate}
+                mediaType={item.mediaType}
+              />
+            );
+          })}
       </div>
     );
   }
@@ -157,14 +113,39 @@ class PersonCredits extends Component {
 
 PersonCredits.defaultProps = {
   className: '',
-  cast: [],
-  crew: []
+  movie: [],
+  tv: [],
+  combined: [],
+  other: []
 };
 
 PersonCredits.propTypes = {
   className: PropTypes.string,
-  cast: PropTypes.arrayOf({}),
-  crew: PropTypes.arrayOf({})
+  movie: PropTypes.arrayOf(
+    PropTypes.shape({
+      adult: PropTypes.bool,
+      backdrop: PropTypes.string,
+      character: PropTypes.string,
+      creditId: PropTypes.string,
+      genres: PropTypes.arrayOf(PropTypes.number),
+      id: PropTypes.number,
+      link: PropTypes.string,
+      mediaType: PropTypes.string,
+      originalLanguage: PropTypes.string,
+      originalTitle: PropTypes.string,
+      overview: PropTypes.string,
+      popularity: PropTypes.number,
+      poster: PropTypes.string,
+      releaseDate: PropTypes.string,
+      title: PropTypes.string,
+      video: PropTypes.bool,
+      voteAverage: PropTypes.number,
+      voteCount: PropTypes.number
+    })
+  ),
+  tv: PropTypes.arrayOf(PropTypes.shape({})),
+  combined: PropTypes.arrayOf(PropTypes.shape({})),
+  other: PropTypes.arrayOf(PropTypes.shape({}))
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -174,8 +155,10 @@ const mapStateToProps = (state, ownProps) => {
     const person = state.person[ownProps.tmdbId];
 
     if (person.credits) {
-      props.cast = person.credits.cast;
-      props.crew = person.credits.crew;
+      props.movie = person.credits.cast.movie;
+      props.tv = person.credits.cast.tv;
+      props.combined = person.credits.cast.combined;
+      props.other = person.credits.crew;
     }
   }
 

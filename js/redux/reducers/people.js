@@ -3,7 +3,7 @@ import {
   ADD_TRAKT_PEOPLE_SUMMARY,
   ADD_TMDB_PEOPLE_DETAILS,
   ADD_TRAKT_TMDB_COMBINED_CREDITS,
-  ADD_TMDB_PEOPLE_EXTERNAL_IDS,
+  // ADD_TMDB_PEOPLE_EXTERNAL_IDS,
   ADD_TMDB_PEOPLE_TAGGED_IMAGES,
   ADD_TMDB_PEOPLE_POPULAR
 } from '../actions/people';
@@ -60,22 +60,22 @@ export const peopleReducer = (state = {}, action) => {
       return { ...state, [slug]: newState };
     }
 
-    case ADD_TMDB_PEOPLE_EXTERNAL_IDS: {
-      const slug = action.metadata.slug;
-
-      const viewData = {
-        ...state[slug].viewData,
-        ...action.payload.viewData
-      };
-
-      const newState = {
-        ...state[slug],
-        viewData,
-        tmdbExternalIds: action.payload.tmdbExternalIds
-      };
-
-      return { ...state, [slug]: newState };
-    }
+    // case ADD_TMDB_PEOPLE_EXTERNAL_IDS: {
+    //   const slug = action.metadata.slug;
+    //
+    //   const viewData = {
+    //     ...state[slug].viewData,
+    //     ...action.payload.viewData
+    //   };
+    //
+    //   const newState = {
+    //     ...state[slug],
+    //     viewData,
+    //     tmdbExternalIds: action.payload.tmdbExternalIds
+    //   };
+    //
+    //   return { ...state, [slug]: newState };
+    // }
 
     case ADD_TMDB_PEOPLE_TAGGED_IMAGES: {
       const slug = action.metadata.slug;
