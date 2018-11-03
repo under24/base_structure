@@ -1,9 +1,11 @@
 import tmdb from '../../utils/tmdb';
 import {
-  addTmdbPeopleBatchedData,
+  // addTmdbPeopleBatchedData,
   addTmdbPeopleExternalIds,
   addTmdbPeopleImages,
-  addTmdbPeopleCombinedCredits
+  addTmdbPeopleCombinedCredits,
+  addTmdbPeopleDetails,
+  addTmdbPeopleTaggedImages
 } from '../actionCreators/person';
 
 export const requestPersonData = tmdbId => dispatch => {
@@ -20,8 +22,41 @@ export const requestPersonData = tmdbId => dispatch => {
       return response;
     })
     .then(response => {
-      const mappedData = {
-        details: {
+      // const mappedData = {
+      //   details: {
+      //     adult: response.adult,
+      //     also_known_as: response.also_known_as,
+      //     biography: response.biography,
+      //     birthday: response.birthday,
+      //     deathday: response.deathday,
+      //     gender: response.gender,
+      //     homepage: response.homepage,
+      //     id: response.id,
+      //     imdb_id: response.imdb_id,
+      //     known_for_department: response.known_for_department,
+      //     name: response.name,
+      //     place_of_birth: response.place_of_birth,
+      //     popularity: response.popularity,
+      //     profile_path: response.profile_path
+      //   },
+      // combinedCredits: response.combined_credits,
+      // externalIds: response.external_ids,
+      // images: response.images,
+      // taggedImages: response.tagged_images
+      // };
+
+      // tmdb
+      //   .peopleGetTaggedImages(response.id, 2)
+      //   .then(response => response.json())
+      //   .then(response => {
+      //     dispatch(addTmdbPeopleTaggedImages(response.id, response));
+      //   });
+
+      // dispatch(addTmdbPeopleBatchedData(mappedData));
+
+      // details
+      dispatch(
+        addTmdbPeopleDetails(response.id, {
           adult: response.adult,
           also_known_as: response.also_known_as,
           biography: response.biography,
@@ -36,16 +71,15 @@ export const requestPersonData = tmdbId => dispatch => {
           place_of_birth: response.place_of_birth,
           popularity: response.popularity,
           profile_path: response.profile_path
-        },
-        // combinedCredits: response.combined_credits,
-        // externalIds: response.external_ids,
-        // images: response.images,
-        taggedImages: response.tagged_images
-      };
-
-      dispatch(addTmdbPeopleBatchedData(mappedData));
-      dispatch(addTmdbPeopleImages(response.id, response.images));
+        })
+      );
+      // externalIds
       dispatch(addTmdbPeopleExternalIds(response.id, response.external_ids));
+      // taggedImages
+      dispatch(addTmdbPeopleTaggedImages(response.id, response.tagged_images));
+      // images
+      dispatch(addTmdbPeopleImages(response.id, response.images));
+      // credits
       dispatch(
         addTmdbPeopleCombinedCredits(response.id, response.combined_credits)
       );
