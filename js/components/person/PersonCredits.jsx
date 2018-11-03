@@ -7,7 +7,6 @@ import './PersonCredits.scss';
 class PersonCredits extends Component {
   state = {
     renderMode: 'combined', // 'movie', 'tv', 'combined'
-    // renderUnpopular: false,
     sortBy: 'date', // 'date', 'voteAverage', 'popularity',
     filterValue: ''
   };
