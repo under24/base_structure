@@ -170,19 +170,23 @@ PersonDetails.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   const props = {};
 
-  if (state.person[ownProps.tmdbId] && state.person[ownProps.tmdbId].details) {
-    const details = state.person[ownProps.tmdbId].details;
+  if (state.person[ownProps.tmdbId]) {
+    const person = state.person[ownProps.tmdbId];
 
-    props.biography = details.biography;
-    if (details.birthday) {
-      props.birthday = utils.normalizeDate(details.birthday);
-      props.age = utils.getAgeFromDate(details.birthday);
+    if (person.details) {
+      props.biography = person.details.biography;
+      props.birthplace = person.details.birthplace;
+      props.homepage = person.details.homepage;
     }
-    props.birthplace = details.birthplace;
-    props.deathday = details.deathday
-      ? utils.normalizeDate(details.deathday)
-      : '';
-    props.homepage = details.homepage;
+
+    if (person.details && person.details.birthday) {
+      props.birthday = utils.normalizeDate(person.details.birthday);
+      props.age = utils.getAgeFromDate(person.details.birthday);
+    }
+
+    if (person.details && person.details.deathday) {
+      props.deathday = utils.normalizeDate(person.details.deathday);
+    }
   }
 
   return props;
