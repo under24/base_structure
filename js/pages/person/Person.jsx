@@ -9,9 +9,9 @@ import SocialBlock from '../../components/SocialBlock';
 import PersonDetails from '../../components/person/PersonDetails';
 import PersonCredits from '../../components/person/PersonCredits';
 import PersonHeader from '../../components/person/PersonHeader';
-import PersonTaggedImages from '../../components/PersonTaggedImages';
 // import PersonPopular from '../../components/person/PersonPopular';
 import RecentlyViewed from '../../components/RecentlyViewed';
+import PersonPageCarousel from '../../components/person/PersonPageCarousel';
 import reactUtils from '../../utils/reactUtils';
 import './Person.scss';
 
@@ -92,7 +92,7 @@ class Person extends Component {
                 ads here
               </div>
               <PersonDetails tmdbId={this.getTmdbId()} />
-              <PersonTaggedImages tmdbId={this.getTmdbId()} />
+              <PersonPageCarousel tmdbId={this.getTmdbId()} />
               <PersonCredits tmdbId={this.getTmdbId()} />
             </div>
             <div className="right-container" />

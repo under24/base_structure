@@ -1,0 +1,40 @@
+.PageCarousel {
+  &__controls {
+    margin-bottom: 10px;
+  }
+  
+  &__controls-item {
+    display: inline-block;
+    margin-left: 10px;
+    
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  
+  &__viewport-container {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+  }
+  
+  &__viewport {
+    height: 100%;
+    white-space: nowrap;
+    position: absolute;
+  }
+  
+  img {
+    height: 100%;
+    margin: 0 5px;
+    
+    &:first-child {
+      margin-left: 0;
+    }
+    
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
