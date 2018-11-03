@@ -1,46 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import InfoBlockItem from '../InfoBlockItem';
-import './PersonInfoBlock.scss';
+import InfoBlock from '../InfoBlock';
 
-const PersonInfoBlock = props => (
-  <div className="PersonInfoBlock">
-    <InfoBlockItem value={props.popularity} label="Популярность" />
-    <InfoBlockItem value={props.tv} label="ТВ-Шоу" />
-    <InfoBlockItem value={props.movie} label="Фильмы" />
-    <InfoBlockItem value={props.other} label="Другое" />
-  </div>
-);
+const PersonInfoBlock = props => <InfoBlock items={props.items} />;
 
 PersonInfoBlock.defaultProps = {
-  tv: 0,
-  movie: 0,
-  other: 0,
-  popularity: 0
+  items: []
 };
 
 PersonInfoBlock.propTypes = {
-  tv: PropTypes.number,
-  movie: PropTypes.number,
-  other: PropTypes.number,
-  popularity: PropTypes.number
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.number
+    })
+  )
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const props = {};
+  const props = {
+    items: []
+  };
 
   if (state.person[ownProps.tmdbId]) {
     const person = state.person[ownProps.tmdbId];
 
     if (person.details) {
-      props.popularity = person.details.popularity;
+      props.items.push({
+        label: 'Популярность',
+        value: person.details.popularity
+      });
     }
 
     if (person.credits) {
-      props.movie = person.credits.cast.movie.length;
-      props.tv = person.credits.cast.tv.length;
-      props.other = person.credits.crew.length;
+      props.items.push({
+        label: 'Фильмы',
+        value: person.credits.cast.movie.length
+      });
+      props.items.push({
+        label: 'ТВ-Шоу',
+        value: person.credits.cast.tv.length
+      });
+      props.items.push({
+        label: 'Другое',
+        value: person.credits.crew.length
+      });
     }
   }
 
