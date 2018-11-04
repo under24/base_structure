@@ -6,7 +6,10 @@ import './PersonHeader.scss';
 
 const PersonHeader = props => (
   <header className="PersonHeader">
-    <div className="PersonHeader__backdrop-image" style={{ backgroundImage: `url(${props.backdrop})` }} />
+    <div
+      className="PersonHeader__backdrop-image"
+      style={{ backgroundImage: `url(${props.backdrop})` }}
+    />
     <div className="PersonHeader__person-name">
       <div className="container">{props.name}</div>
     </div>
@@ -39,13 +42,15 @@ const mapStateToProps = (state, ownProps) => {
     if (person.details) {
       props.name = person.details.name;
     }
-    
+
     if (person.taggedImages) {
       for (let i = 0; i < person.taggedImages.pages['1'].length; i += 1) {
-        let currentTaggedImage = person.taggedImages.pages['1'][i];
-        
+        const currentTaggedImage = person.taggedImages.pages['1'][i];
+
         if (currentTaggedImage.aspectRatio > 1) {
-          props.backdrop = `https://image.tmdb.org/t/p/original${currentTaggedImage.image}`;
+          props.backdrop = `https://image.tmdb.org/t/p/original${
+            currentTaggedImage.image
+          }`;
           break;
         }
       }
