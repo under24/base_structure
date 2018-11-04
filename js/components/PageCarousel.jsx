@@ -50,6 +50,7 @@ class PageCarousel extends Component {
               // .sort((itemA, itemB) => itemA.voteAverage - itemB.voteAverage)
               .map(item => (
                 <img
+                  key={item.image}
                   src={`https://image.tmdb.org/t/p/w200${item.image}`}
                   alt={item.voteAverage}
                 />
