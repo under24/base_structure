@@ -10,7 +10,7 @@ import PersonDetails from '../../components/person/PersonDetails';
 import PersonCredits from '../../components/person/PersonCredits';
 import PersonHeader from '../../components/person/PersonHeader';
 // import PersonPopular from '../../components/person/PersonPopular';
-import RecentlyViewed from '../../components/RecentlyViewed';
+// import RecentlyViewed from '../../components/RecentlyViewed';
 import PersonPageCarousel from '../../components/person/PersonPageCarousel';
 import reactUtils from '../../utils/reactUtils';
 import './Person.scss';
@@ -101,7 +101,7 @@ class Person extends Component {
         <footer>
           <div className="black-divider" />
           <div className="container">
-            <RecentlyViewed />
+            {/* <RecentlyViewed /> */}
             <div>footer text here</div>
           </div>
         </footer>
