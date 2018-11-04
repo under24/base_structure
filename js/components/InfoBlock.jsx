@@ -12,7 +12,12 @@ const InfoBlock = props => {
   return (
     <div className="InfoBlock">
       {props.items.map(data => (
-        <InfoBlockItem key={data.label} label={data.label} value={data.value} />
+        <InfoBlockItem
+          key={data.label}
+          label={data.label}
+          value={data.value}
+          link={data.link}
+        />
       ))}
     </div>
   );
@@ -26,7 +31,8 @@ InfoBlock.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      value: PropTypes.number
+      value: PropTypes.number,
+      link: PropTypes.string
     })
   )
 };

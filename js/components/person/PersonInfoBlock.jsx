@@ -29,7 +29,8 @@ const mapStateToProps = (state, ownProps) => {
     if (person.details) {
       props.items.push({
         label: 'Популярность',
-        value: person.details.popularity
+        value: person.details.popularity,
+        link: '/people/'
       });
     }
 
