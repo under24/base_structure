@@ -6,31 +6,29 @@ class PageCarousel extends Component {
   test = event => {
     // debugger;
     console.log(event.clientX, event.clientY);
-    
+
     let initX = event.clientX;
     const viewportContainer = event.currentTarget;
-    
-    
+
     window.onmousemove = event => {
       const shiftX = initX - event.clientX;
-      
+
       // console.log(viewportContainer.scrollLeft);
       // console.log(shiftX);
-      
-      
+
       viewportContainer.scrollLeft += shiftX;
-      
+
       initX = event.clientX;
-    }
-    
+    };
+
     window.onmouseup = () => {
       window.onmousemove = null;
       window.onmouseup = null;
-    }
-  }
-  
+    };
+  };
+
   dragStart = event => event.preventDefault();
-  
+
   render() {
     return (
       <div className="PageCarousel">
@@ -42,13 +40,20 @@ class PageCarousel extends Component {
             Кадры<sup>100</sup>
           </div>
         </div>
-        <div className="PageCarousel__viewport-container" onMouseDown={this.test} onDragStart={this.dragStart} >
+        <div
+          className="PageCarousel__viewport-container"
+          onMouseDown={this.test}
+          onDragStart={this.dragStart}
+        >
           <div className="PageCarousel__viewport">
-          {this.props.images
-            .sort((itemA, itemB) => itemA.voteAverage - itemB.voteAverage)
-            .map(item => (
-              <img src={`https://image.tmdb.org/t/p/w200${item.image}`} alt={item.voteAverage} />
-            ))}
+            {this.props.images
+              // .sort((itemA, itemB) => itemA.voteAverage - itemB.voteAverage)
+              .map(item => (
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${item.image}`}
+                  alt={item.voteAverage}
+                />
+              ))}
           </div>
         </div>
       </div>
@@ -61,9 +66,7 @@ PageCarousel.defaultProps = {
 };
 
 PageCarousel.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.shape({
-    
-  }))
+  images: PropTypes.arrayOf(PropTypes.shape({}))
 };
 
 export default PageCarousel;
