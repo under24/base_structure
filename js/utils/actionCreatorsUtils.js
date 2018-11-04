@@ -24,13 +24,10 @@ const actionCreatorsUtils = {
     cast.forEach(castItem => {
       const formattedCastItem = this.formatCast(castItem);
 
-      switch (formattedCastItem.mediaType) {
-        case 'movie':
-          movie.push(formattedCastItem);
-          break;
-        case 'tv':
-          tv.push(formattedCastItem);
-          break;
+      if (formattedCastItem.mediaType === 'movie') {
+        movie.push(formattedCastItem);
+      } else if (formattedCastItem.mediaType === 'tv') {
+        tv.push(formattedCastItem);
       }
 
       combined.push(formattedCastItem);
