@@ -1,3 +1,5 @@
+import linkUtils from './linkUtils';
+
 const actionCreatorsUtils = {
   normalizeDates(birthday) {
     return {
@@ -13,29 +15,6 @@ const actionCreatorsUtils = {
     const age = Math.floor(diff / 31557600000); // 1000*60*60*24*365.25
 
     return age;
-  },
-  generateLink(page, tmdbId, description, date) {
-    let nameURL = '';
-    if (description) {
-      const nameFormatted = description
-        .replace(/[^\w\s]/gi, '')
-        .trim()
-        .toLowerCase()
-        .replace(/\s/g, '-');
-
-      if (nameFormatted) {
-        nameURL = `-${nameFormatted}`;
-      }
-    }
-
-    let dateURL = '';
-    if (nameURL && date) {
-      const dateFormatted = new Date(date).getFullYear();
-
-      dateURL = `-${dateFormatted}`;
-    }
-
-    return `/${page}/${tmdbId}${nameURL}${dateURL}`;
   },
   formatCombinedCast(cast) {
     const movie = [];
@@ -121,7 +100,7 @@ const actionCreatorsUtils = {
     return result;
   },
   formatMovieObject(data) {
-    const link = this.generateLink(
+    const link = linkUtils.generateLink(
       'movies',
       data.id,
       data.original_title,
@@ -148,7 +127,7 @@ const actionCreatorsUtils = {
     };
   },
   formatTvObject(data) {
-    const link = this.generateLink(
+    const link = linkUtils.generateLink(
       'shows',
       data.id,
       data.original_name,
