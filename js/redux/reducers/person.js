@@ -94,8 +94,6 @@ export const personReducer = (state = {}, action) => {
     case ADD_TMDB_PEOPLE_TAGGED_IMAGES: {
       const tmdbId = action.metadata.tmdbId;
 
-      debugger;
-
       let newPersonData;
       // id is present in state
       if (state[tmdbId]) {
