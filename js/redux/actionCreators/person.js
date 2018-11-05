@@ -89,40 +89,38 @@ export const addTmdbPeopleBatchedData = data => {
   };
 };
 
-export const addTmdbPeopleExternalIds = (tmdbId, data) => {
-  return {
-    type: ADD_TMDB_PEOPLE_EXTERNAL_IDS,
-    payload: {
-      imdb: data.imdb_id ? `https://www.imdb.com/name/${data.imdb_id}/` : '',
-      twitter: data.twitter_id ? `https://twitter.com/${data.twitter_id}/` : '',
-      instagram: data.instagram_id
-        ? `https://www.instagram.com/${data.instagram_id}/`
-        : '',
-      facebook: data.facebook_id
-        ? `https://www.facebook.com/${data.facebook_id}/`
-        : ''
-    },
-    metadata: { tmdbId }
-  };
-};
+export const addTmdbPeopleExternalIds = (tmdbId, data) => ({
+  type: ADD_TMDB_PEOPLE_EXTERNAL_IDS,
+  payload: {
+    imdb: data.imdb_id ? `https://www.imdb.com/name/${data.imdb_id}/` : '',
+    twitter: data.twitter_id ? `https://twitter.com/${data.twitter_id}/` : '',
+    instagram: data.instagram_id
+      ? `https://www.instagram.com/${data.instagram_id}/`
+      : '',
+    facebook: data.facebook_id
+      ? `https://www.facebook.com/${data.facebook_id}/`
+      : ''
+  },
+  metadata: { tmdbId }
+});
 
-export const addTmdbPeopleImages = (tmdbId, data) => {
-  return {
-    type: ADD_TMDB_PEOPLE_IMAGES,
-    payload: data.profiles.map(imageObj => ({
-      aspectRatio: imageObj.aspect_ratio,
-      image: imageObj.file_path,
-      height: imageObj.height,
-      width: imageObj.width,
-      iso_639_1: imageObj.iso_639_1,
-      voteAverage: imageObj.vote_average,
-      voteCount: imageObj.vote_count
-    })),
-    metadata: { tmdbId }
-  };
-};
+export const addTmdbPeopleImages = (tmdbId, data) => ({
+  type: ADD_TMDB_PEOPLE_IMAGES,
+  payload: data.profiles.map(imageObj => ({
+    aspectRatio: imageObj.aspect_ratio,
+    image: imageObj.file_path,
+    height: imageObj.height,
+    width: imageObj.width,
+    iso_639_1: imageObj.iso_639_1,
+    voteAverage: imageObj.vote_average,
+    voteCount: imageObj.vote_count
+  })),
+  metadata: { tmdbId }
+});
 
 export const addTmdbPeopleCombinedCredits = (tmdbId, data) => {
+  debugger;
+
   return {
     type: ADD_TMDB_PEOPLE_COMBINED_CREDITS,
     payload: {
@@ -133,47 +131,43 @@ export const addTmdbPeopleCombinedCredits = (tmdbId, data) => {
   };
 };
 
-export const addTmdbPeopleDetails = (tmdbId, data) => {
-  return {
-    type: ADD_TMDB_PEOPLE_DETAILS,
-    payload: {
-      adult: data.adult,
-      alsoKnownAs: data.also_known_as || [],
-      biography: data.biography || '',
-      birthday: data.birthday || '',
-      deathday: data.deathday || '',
-      gender: data.gender,
-      homepage: data.homepage || '',
-      id: data.id,
-      // imdbId: data.imdb_id || '',
-      knownForDepartment: data.known_for_department || '',
-      name: data.name || '',
-      birthplace: data.place_of_birth || '',
-      popularity: data.popularity || 0,
-      image: data.profile_path || ''
-    },
-    metadata: { tmdbId }
-  };
-};
+export const addTmdbPeopleDetails = (tmdbId, data) => ({
+  type: ADD_TMDB_PEOPLE_DETAILS,
+  payload: {
+    adult: data.adult,
+    alsoKnownAs: data.also_known_as || [],
+    biography: data.biography || '',
+    birthday: data.birthday || '',
+    deathday: data.deathday || '',
+    gender: data.gender,
+    homepage: data.homepage || '',
+    id: data.id,
+    // imdbId: data.imdb_id || '',
+    knownForDepartment: data.known_for_department || '',
+    name: data.name || '',
+    birthplace: data.place_of_birth || '',
+    popularity: data.popularity || 0,
+    image: data.profile_path || ''
+  },
+  metadata: { tmdbId }
+});
 
-export const addTmdbPeopleTaggedImages = (tmdbId, data) => {
-  return {
-    type: ADD_TMDB_PEOPLE_TAGGED_IMAGES,
-    payload: {
-      totalPages: data.total_pages,
-      totaResults: data.total_results,
-      pages: {
-        [`${data.page}`]: data.results.map(item => ({
-          aspectRatio: item.aspect_ratio,
-          image: item.file_path,
-          height: item.height,
-          voteAverage: item.vote_average,
-          voteCount: item.vote_count,
-          width: item.width,
-          media: utils.formatTaggedImageMediaObject(item)
-        }))
-      }
-    },
-    metadata: { tmdbId }
-  };
-};
+export const addTmdbPeopleTaggedImages = (tmdbId, data) => ({
+  type: ADD_TMDB_PEOPLE_TAGGED_IMAGES,
+  payload: {
+    totalPages: data.total_pages,
+    totaResults: data.total_results,
+    pages: {
+      [`${data.page}`]: data.results.map(item => ({
+        aspectRatio: item.aspect_ratio,
+        image: item.file_path,
+        height: item.height,
+        voteAverage: item.vote_average,
+        voteCount: item.vote_count,
+        width: item.width,
+        media: utils.formatTaggedImageMediaObject(item)
+      }))
+    }
+  },
+  metadata: { tmdbId }
+});
