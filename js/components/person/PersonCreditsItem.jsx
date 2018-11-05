@@ -1,28 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './PersonCreditsItem';
+import './PersonCreditsItem.scss';
 
 const PersonCreditsItem = props => {
   let img;
   if (props.poster) {
     img = (
       <img
-        className="poster"
+        className="PersonCreditsItem__poster"
         src={`https://image.tmdb.org/t/p/w300${props.poster}`}
-        alt=""
+        alt={`${props.originalTitle} poster`}
       />
     );
   }
 
   let title = '';
   if (props.title) {
-    title = <div className="item-detail item-detail-title">{props.title}</div>;
+    title = (
+      <div className="PersonCreditsItem__text item-detail-title">
+        {props.title}
+      </div>
+    );
   }
 
   let originalTitle = '';
   if (props.title !== props.originalTitle) {
     originalTitle = (
-      <div className="item-detail item-detail-orig-title">
+      <div className="PersonCreditsItem__text item-detail-orig-title">
         {props.originalTitle}
       </div>
     );
@@ -36,7 +40,7 @@ const PersonCreditsItem = props => {
   let character = '';
   if (props.character) {
     character = (
-      <div className="item-detail item-detail-character">
+      <div className="PersonCreditsItem__text item-detail-character">
         В роли: {props.character} {inEpisodes}
       </div>
     );
@@ -47,16 +51,18 @@ const PersonCreditsItem = props => {
     const date = props.releaseDate.split('-')[0];
 
     releaseDate = (
-      <div className="item-detail item-detail-release-date">{date}</div>
+      <div className="PersonCreditsItem__text item-detail-release-date">
+        {date}
+      </div>
     );
   }
 
   let backdrop = '';
   if (props.backdrop) {
     backdrop = (
-      <div className="backdrop-container">
+      <div className="PersonCreditsItem__backdrop-container">
         <img
-          className="backdrop"
+          className="PersonCreditsItem__backdrop"
           src={`https://image.tmdb.org/t/p/w500${props.backdrop}`}
           alt=""
         />
@@ -66,14 +72,14 @@ const PersonCreditsItem = props => {
 
   // let mediaType = '';
   // if (props.mediaType) {
-  //   mediaType = props.mediaType === 'movie' ? 'Фильм' : 'ТВ-Шоу';
+  //   mediaType = <div>{props.mediaType === 'movie' ? 'Фильм' : 'ТВ-Шоу'}</div>;
   // }
 
   return (
-    <div className="PersonCredits__item">
-      <div className="PersonCredits__item-inner-container">
+    <div className="PersonCreditsItem">
+      <div className="PersonCreditsItem__inner-container">
         {img}
-        <div className="item-details-text-container">
+        <div className="PersonCreditsItem__text-container">
           {releaseDate}
           {title}
           {originalTitle}
