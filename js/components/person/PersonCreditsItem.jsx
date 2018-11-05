@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './PersonCreditsItem';
 
 const PersonCreditsItem = props => {
   let img;
@@ -28,8 +29,8 @@ const PersonCreditsItem = props => {
   }
 
   let inEpisodes = '';
-  if (props.castInEpisodes) {
-    inEpisodes = <span>в {props.castInEpisodes} эпизодах</span>;
+  if (props.episodeCount) {
+    inEpisodes = <span>в {props.episodeCount} эпизодах</span>;
   }
 
   let character = '';
@@ -69,8 +70,8 @@ const PersonCreditsItem = props => {
   // }
 
   return (
-    <div className="PersonCreditsItem">
-      <div className="item-inner-container">
+    <div className="PersonCredits__item">
+      <div className="PersonCredits__item-inner-container">
         {img}
         <div className="item-details-text-container">
           {releaseDate}
@@ -90,7 +91,7 @@ PersonCreditsItem.defaultProps = {
   title: '',
   originalTitle: '',
   character: '',
-  castInEpisodes: '',
+  episodeCount: 0,
   releaseDate: '',
   mediaType: ''
 };
@@ -101,7 +102,7 @@ PersonCreditsItem.propTypes = {
   title: PropTypes.string,
   originalTitle: PropTypes.string,
   character: PropTypes.string,
-  castInEpisodes: PropTypes.string,
+  episodeCount: PropTypes.number,
   releaseDate: PropTypes.string,
   mediaType: PropTypes.string
 };

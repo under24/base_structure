@@ -1,12 +1,29 @@
 .PersonCredits {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   
-  &__title {
-    font-size: 24px;
+  &__render-mode-control-item {
+    display: inline-block;
+    margin-left: 10px;
+    color: rgba(109, 109, 109, 0.8);
+    cursor: pointer;
+    
+    &--highlighted {
+      font-weight: 600;
+      color: inherit;
+    }
+    
+    &:first-child {
+      margin-left: 0;
+    }
   }
   
-  .PersonCreditsItem {
+  &__title {
+    font-size: 20px;
+    text-align: right;
+  }
+  
+  &__item {
     position: relative;
     height: 100px;
     margin-top: 10px;
@@ -87,7 +104,7 @@
         margin-right: 15px;
       }
       
-      .item-inner-container {
+      .PersonCredits__item-inner-container {
         position: absolute;
         height: 240px;
         top: 0;
@@ -105,7 +122,7 @@
       }
     }
     
-    .item-inner-container {
+    .PersonCredits__item-inner-container {
       height: 100%;
       overflow: hidden;
       background-color: white;
@@ -113,8 +130,6 @@
       align-self: center;
       flex: 1;
     }
-    
-
     
     .poster {
       height: 100%;

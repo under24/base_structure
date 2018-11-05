@@ -1,22 +1,11 @@
 const scrollUtils = {
-  elementInViewport2(el) {
-    let top = el.offsetTop;
-    let left = el.offsetLeft;
-    const width = el.offsetWidth;
-    const height = el.offsetHeight;
+  nodeInViewport(node, offset = 0) {
+    const nodeTopX = node.getBoundingClientRect().top;
+    const screenBottomX = window.innerHeight + window.pageXOffset;
 
-    while (el.offsetParent) {
-      el = el.offsetParent;
-      top += el.offsetTop;
-      left += el.offsetLeft;
-    }
+    const intersectionX = nodeTopX - screenBottomX - offset;
 
-    return (
-      top < window.pageYOffset + window.innerHeight &&
-      left < window.pageXOffset + window.innerWidth &&
-      top + height > window.pageYOffset &&
-      left + width > window.pageXOffset
-    );
+    return intersectionX <= 0;
   }
 };
 
