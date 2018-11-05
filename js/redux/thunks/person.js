@@ -45,14 +45,14 @@ export const requestPersonData = tmdbId => dispatch => {
       // taggedImages: response.tagged_images
       // };
 
+      // dispatch(addTmdbPeopleBatchedData(mappedData));
+
       // tmdb
       //   .peopleGetTaggedImages(response.id, 2)
       //   .then(response => response.json())
       //   .then(response => {
       //     dispatch(addTmdbPeopleTaggedImages(response.id, response));
       //   });
-
-      // dispatch(addTmdbPeopleBatchedData(mappedData));
 
       // details
       dispatch(
