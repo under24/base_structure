@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const InfoBlockItem = props => {
   // do not show if empty
@@ -9,10 +10,10 @@ const InfoBlockItem = props => {
 
   if (props.link) {
     return (
-      <a href={props.link} className="InfoBlock__item">
+      <Link to={props.link} className="InfoBlock__item">
         <span className="InfoBlock__item-value">{props.value}</span>
         <span className="InfoBlock__item-label">{props.label}</span>
-      </a>
+      </Link>
     );
   }
 
