@@ -118,18 +118,14 @@ export const addTmdbPeopleImages = (tmdbId, data) => ({
   metadata: { tmdbId }
 });
 
-export const addTmdbPeopleCombinedCredits = (tmdbId, data) => {
-  debugger;
-
-  return {
-    type: ADD_TMDB_PEOPLE_COMBINED_CREDITS,
-    payload: {
-      cast: utils.formatCombinedCast(data.cast),
-      crew: data.crew.map(utils.formatCrew.bind(utils))
-    },
-    metadata: { tmdbId }
-  };
-};
+export const addTmdbPeopleCombinedCredits = (tmdbId, data) => ({
+  type: ADD_TMDB_PEOPLE_COMBINED_CREDITS,
+  payload: {
+    cast: utils.formatCombinedCast(data.cast),
+    crew: data.crew.map(utils.formatCrew.bind(utils))
+  },
+  metadata: { tmdbId }
+});
 
 export const addTmdbPeopleDetails = (tmdbId, data) => ({
   type: ADD_TMDB_PEOPLE_DETAILS,
