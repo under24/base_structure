@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { requestPersonData } from '../../redux/thunks/people';
 import { requestPersonData } from '../../redux/thunks/person';
 import store from '../../redux/store';
 import PersonPortrait from '../../components/person/PersonPortrait';
@@ -66,7 +65,7 @@ class Person extends Component {
   }
 
   render() {
-    console.log('Person render');
+    console.log('Person rendered');
 
     // <PersonPopular className="container-block" />
 
