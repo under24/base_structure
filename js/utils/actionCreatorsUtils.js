@@ -1,4 +1,5 @@
 import linkUtils from './linkUtils';
+import genreUtils from './genreUtils';
 
 const actionCreatorsUtils = {
   normalizeDates(birthday) {
@@ -104,12 +105,16 @@ const actionCreatorsUtils = {
       data.release_date
     );
 
+    const genres = data.genre_ids
+      ? data.genre_ids.map(genreUtils.getGenreNameById.bind(genreUtils))
+      : [];
+
     return {
       link,
       mediaType: 'movie',
       adult: data.adult || false,
       backdrop: data.backdrop_path || '',
-      genres: data.genre_ids || [],
+      genres,
       id: data.id,
       originalLanguage: data.original_language || '',
       originalTitle: data.original_title || '',
@@ -131,12 +136,16 @@ const actionCreatorsUtils = {
       data.first_air_date
     );
 
+    const genres = data.genre_ids
+      ? data.genre_ids.map(genreUtils.getGenreNameById.bind(genreUtils))
+      : [];
+
     return {
       link,
       mediaType: 'tv',
       backdrop: data.backdrop_path || '',
       releaseDate: data.first_air_date || '',
-      genres: data.genre_ids || [],
+      genres,
       id: data.id,
       title: data.name || '',
       originCountry: data.origin_country || [],
