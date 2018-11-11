@@ -25,6 +25,7 @@
 
 * {
   box-sizing: border-box;
+  outline: none;
 }
 
 body {
@@ -34,4 +35,9 @@ body {
   font-family: 'Exo 2', sans-serif;
   color: rgba(0, 0, 0, 0.75);
   line-height: 1.4;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
