@@ -11,32 +11,64 @@ const SocialBlock = props => {
 
   if (props.facebook) {
     facebook = (
-      <div className="SocialBlock__link">
-        <a href={props.facebook}>Facebook</a>
+      <div className="SocialBlock__item">
+        <a
+          className="SocialBlock__link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={props.facebook}
+        >
+          <span className="SocialBlock__link-text">Facebook</span>
+          <i className="fab fa-facebook-square SocialBlock__link-icon" />
+        </a>
       </div>
     );
   }
 
   if (props.imdb) {
     imdb = (
-      <div className="SocialBlock__link">
-        <a href={props.imdb}>IMDB</a>
+      <div className="SocialBlock__item">
+        <a
+          className="SocialBlock__link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={props.imdb}
+        >
+          <span className="SocialBlock__link-text">IMDB</span>
+          <i className="fab fa-imdb SocialBlock__link-icon" />
+        </a>
       </div>
     );
   }
 
   if (props.twitter) {
     twitter = (
-      <div className="SocialBlock__link">
-        <a href={props.twitter}>Twitter</a>
+      <div className="SocialBlock__item">
+        <a
+          className="SocialBlock__link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={props.twitter}
+        >
+          <span className="SocialBlock__link-text">Twitter</span>
+          <i className="fab fa-twitter-square SocialBlock__link-icon" />
+        </a>
       </div>
     );
   }
 
   if (props.instagram) {
     instagram = (
-      <div className="SocialBlock__link">
-        <a href={props.instagram}>Instagram</a>
+      <div className="SocialBlock__item">
+        <a
+          className="SocialBlock__link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={props.instagram}
+        >
+          <span className="SocialBlock__link-text">Instagram</span>
+          <i className="fab fa-instagram SocialBlock__link-icon" />
+        </a>
       </div>
     );
   }

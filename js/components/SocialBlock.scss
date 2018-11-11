@@ -1,4 +1,29 @@
 .SocialBlock {
   margin-top: 15px;
-  text-align: center;
+  padding-right: 10px;
+  font-size: 15px;
+  
+  &__item {
+    margin-bottom: 12px;
+    color: rgba(109, 109, 109, 0.8);
+    line-height: 16px;
+    
+    &:hover {
+      color: rgba(0, 0, 0, 0.75);
+    }
+  }
+  
+  &__link {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  &__link-text {
+    vertical-align: top;
+  }
+  
+  &__link-icon {
+    font-size: 18px;
+    margin-left: 5px;
+  }
 }
