@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { requestMovieSlugData } from '../redux/thunks/movies';
-import Banner from '../components/Banner';
 // import './Movie.scss';
 
 const TitleHeader = () => (
   <header className="header">
-    <Banner banner="banner-url-here" />
     <nav className="navbar">navbar</nav>
     <div className="title-container">
       <h1 className="header-title">title here</h1>
