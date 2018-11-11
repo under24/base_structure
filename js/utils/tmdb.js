@@ -99,6 +99,21 @@ const tmdb = {
       console.log(`TMDB: batched data fetched [${tmdbId}]`);
       return response;
     });
+  },
+  searchMulti(searchQuery, page = 1) {
+    const apiKey = this.getApiKey();
+
+    if (!searchQuery || !apiKey) {
+      console.warn('required vars are missing');
+    }
+
+    console.log(`TMDB: SEARCH-MULTI fetching... [${searchQuery}]`);
+
+    return fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=ru&query=${searchQuery}&page=${page}&include_adult=false
+`).then(response => {
+      console.log(`TMDB: SEARCH-MULTI fetched [${searchQuery}]`);
+      return response;
+    });
   }
 };
 
