@@ -8,6 +8,7 @@ import Movies from './pages/Movies';
 import Movie from './pages/Movie';
 import Person from './pages/person/Person';
 import People from './pages/people/People';
+import Search from './pages/search/Search';
 import './App.scss';
 
 const App = () => (
@@ -28,6 +29,9 @@ const App = () => (
           <Route path="/people/:tmdbId" component={Person} />
 
           <Route path="/people/" component={People} />
+
+          {/* search page */}
+          <Route path="/search" component={Search} />
 
           {/* 404 page */}
           <Route component={NotFound} />

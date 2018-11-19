@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PersonInfoBlock from './PersonInfoBlock';
+import HeaderNavStrip from '../HeaderNavStrip';
 import './PersonHeader.scss';
 
 const PersonHeader = props => (
@@ -10,6 +11,7 @@ const PersonHeader = props => (
       className="PersonHeader__backdrop-image"
       style={{ backgroundImage: `url(${props.backdrop})` }}
     />
+    <HeaderNavStrip location="person" />
     <div className="PersonHeader__person-name">
       <div className="container">{props.name}</div>
     </div>

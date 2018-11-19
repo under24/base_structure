@@ -97,6 +97,19 @@ const actionCreatorsUtils = {
 
     return result;
   },
+  formatSearchMultiObject(data) {
+    let result;
+
+    if (data.media_type === 'tv') {
+      result = this.formatTvObject(data);
+    } else if (data.media_type === 'movie') {
+      result = this.formatMovieObject(data);
+    } else if (data.media_type === 'person') {
+      result = this.formatPersonObject(data);
+    }
+
+    return result;
+  },
   formatMovieObject(data) {
     const link = linkUtils.generateLink(
       'movies',
@@ -156,6 +169,20 @@ const actionCreatorsUtils = {
       poster: data.poster_path || '',
       voteAverage: data.vote_average || 0,
       voteCount: data.vote_count || 0
+    };
+  },
+  formatPersonObject(data) {
+    const link = linkUtils.generateLink('people', data.id, data.name);
+
+    return {
+      poster: data.profile_path,
+      adult: data.adult,
+      id: data.id,
+      mediaType: 'person',
+      knownFor: data.known_for,
+      title: data.name,
+      popularity: data.popularity,
+      link
     };
   }
 };

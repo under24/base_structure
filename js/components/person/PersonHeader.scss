@@ -2,9 +2,9 @@
   height: 550px;
   position: relative;
   
-  .container {
+  &__person-name .container,
+  &__bottom-strip .container {
     padding-left: 200px;
-    height: 100%;
   }
   
   &__person-name {
