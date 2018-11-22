@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import reactUtils from '../../utils/reactUtils';
 import { requestSearchData } from '../../redux/thunks/search';
 import SearchResultList from './SearchResultList';
@@ -10,6 +11,23 @@ class SearchInput extends Component {
   state = {
     inputFocused: false
   };
+
+  getOverlay() {
+    let overlay = '';
+
+    if (this.state.inputFocused) {
+      overlay = (
+        <div
+          className="SearchInput__overlay"
+          onClick={this.handleOverlayClick}
+          role="button"
+          tabIndex="-1"
+        />
+      );
+    }
+
+    return overlay;
+  }
 
   handleSearchInput = e => this.props.requestSearchData(e.target.value);
 
@@ -21,8 +39,7 @@ class SearchInput extends Component {
 
   redirectToSearchPage = event => {
     event.preventDefault();
-    debugger;
-    // this.props.history.push(`/search?query=${this.props.searchQuery}`);
+    this.props.history.push(`/search/${this.props.searchQuery}`);
   };
 
   render() {
@@ -34,12 +51,7 @@ class SearchInput extends Component {
                   `}
       >
         <i className="fas fa-search SearchInput__search-icon" />
-        <div
-          className="SearchInput__overlay"
-          onClick={this.handleOverlayClick}
-          role="button"
-          tabIndex="-1"
-        />
+        {this.getOverlay()}
         <SearchResultList inputFocused={this.state.inputFocused} />
         <form onSubmit={this.redirectToSearchPage}>
           <input
@@ -60,13 +72,19 @@ class SearchInput extends Component {
 SearchInput.defaultProps = {
   requestSearchData: reactUtils.defaultPropsFunc,
   loading: false,
-  searchQuery: ''
+  searchQuery: '',
+  history: {
+    push: reactUtils.defaultPropsFunc
+  }
 };
 
 SearchInput.propTypes = {
   requestSearchData: PropTypes.func,
   loading: PropTypes.bool,
-  searchQuery: PropTypes.string
+  searchQuery: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func
+  })
 };
 
 const mapStateToProps = state => ({
@@ -80,7 +98,9 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchInput);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SearchInput)
+);

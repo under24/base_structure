@@ -3,22 +3,13 @@
   top: 10px;
   bottom: 10px;
   right: 0;
-  width: 245px;
-  transition: 0.3s;
-  opacity: 0.75;
+  width: 335px;
+  transition: 0.5s;
   
   &--focused {
-    // transition: 0.5s;
-    width: 375px;
-    opacity: 1;
-    
     .SearchInput__overlay {
       display: block;
     }
-  }
-  
-  &:hover {
-    opacity: 1;
   }
   
   &--loading {
