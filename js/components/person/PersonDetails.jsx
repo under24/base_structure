@@ -119,7 +119,13 @@ class PersonDetails extends Component {
       homepage = (
         <div className="PersonDetails__detail-container PersonDetails__homepage">
           <span className="PersonDetails__detail-title">Официальный сайт:</span>
-          <span>{this.props.homepage}</span>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={this.props.homepage}
+          >
+            {this.props.homepage}
+          </a>
         </div>
       );
     }
