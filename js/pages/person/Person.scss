@@ -1,27 +1,24 @@
 .Person {
-  main .left-container {
+  &__main-left-container {
     width: 190px;
     padding: 0px 10px;
     margin-top: -180px;
     position: relative;
   }
   
-  main .center-container {
+  &__main-center-container {
     flex: 1;
-    padding: 30px 10px;
-  }
-  
-  main .right-container {
-    width: 202px;
-    padding: 30px 0px 30px 10px;
+    padding: 0 10px;
     
-    .container-block {
+    & > * {
+      margin-top: 30px;
       margin-bottom: 30px;
     }
-    
-    .container-block:last-child {
-      margin-bottom: 0;
-    }
+  }
+  
+  &__main-right-container {
+    width: 202px;
+    padding: 0 10px;
   }
   
   main .container {
@@ -35,5 +32,18 @@
   
   footer .container {
     padding: 30px 0;
+  }
+  
+  .StickyContainer {
+    &--top-fixed {
+      width: 170px;
+      top: 75px;
+    }
+    
+    &--bottom-fixed {
+      bottom: 0;
+      left: 10px;
+      right: 10px;
+    }
   }
 }

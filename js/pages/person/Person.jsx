@@ -74,27 +74,32 @@ class Person extends Component {
         <PersonHeader tmdbId={this.getTmdbId()} />
         <main>
           <div className="container">
-            <div className="left-container">
-              <PersonPortrait tmdbId={this.getTmdbId()} />
-              <SocialBlock tmdbId={this.getTmdbId()} />
+            <div
+              className="Person__main-left-container"
+              id="StickyContainerTarget"
+            >
+              <StickyContainer
+                targetSelector="#StickyContainerTarget"
+                topOffset={75}
+              >
+                <PersonPortrait tmdbId={this.getTmdbId()} />
+                <SocialBlock tmdbId={this.getTmdbId()} />
+              </StickyContainer>
             </div>
-            <div className="center-container">
+            <div className="Person__main-center-container">
               <div
                 className="ads"
                 style={{
                   width: '728px',
                   height: '90px',
-                  backgroundColor: 'yellow',
-                  marginBottom: '15px'
+                  backgroundColor: 'yellow'
                 }}
-              >
-                ads here
-              </div>
+              />
               <PersonDetails tmdbId={this.getTmdbId()} />
               <PersonPageCarousel tmdbId={this.getTmdbId()} />
               <PersonCredits tmdbId={this.getTmdbId()} />
             </div>
-            <div className="right-container" />
+            <div className="Person__main-right-container" />
           </div>
         </main>
         <footer>
