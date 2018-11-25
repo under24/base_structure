@@ -39,7 +39,7 @@ class Person extends Component {
   // get current person tmdbId from url
   // /people/:tmdbId
   getTmdbId() {
-    return this.props.match.params.tmdbId;
+    return parseInt(this.props.match.params.tmdbId, 10);
   }
 
   processPersonData() {
