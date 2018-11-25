@@ -8,6 +8,7 @@ import SocialBlock from '../../components/SocialBlock';
 import PersonDetails from '../../components/person/PersonDetails';
 import PersonCredits from '../../components/person/PersonCredits';
 import PersonHeader from '../../components/person/PersonHeader';
+import StickyContainer from '../../components/StickyContainer';
 // import PersonPopular from '../../components/person/PersonPopular';
 // import RecentlyViewed from '../../components/RecentlyViewed';
 import PersonPageCarousel from '../../components/person/PersonPageCarousel';
@@ -18,7 +19,7 @@ import './Person.scss';
  * /people/:tmdbId
  */
 class Person extends Component {
-  // when urls changes then request new movie data
+  // when urls changes then request new data
   componentWillMount() {
     this.unlisten = this.props.history.listen(() => {
       setTimeout(() => this.processPersonData());
@@ -56,7 +57,7 @@ class Person extends Component {
     const state = store.getState();
 
     // data is loaded
-    if (state.people[tmdbId]) {
+    if (state.person[tmdbId]) {
       return true;
     }
 
