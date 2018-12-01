@@ -16,9 +16,7 @@ import scrollUtils from '../../utils/scrollUtils';
 import reactUtils from '../../utils/reactUtils';
 import './Person.scss';
 
-/* 
- * /people/:tmdbId
- */
+// /people/:tmdbId
 class Person extends Component {
   // when urls changes then request new data
   componentWillMount() {
@@ -28,9 +26,8 @@ class Person extends Component {
     });
   }
 
-  // request movie data on init
   componentDidMount() {
-    scrollUtils.scrollToTop();
+    // request movie data on init
     this.processPersonData();
   }
 
@@ -40,7 +37,6 @@ class Person extends Component {
   }
 
   // get current person tmdbId from url
-  // /people/:tmdbId
   getTmdbId() {
     return parseInt(this.props.match.params.tmdbId, 10);
   }
@@ -48,6 +44,7 @@ class Person extends Component {
   processPersonData() {
     const tmdbId = this.getTmdbId();
 
+    // do not load data if it is already in state
     if (this.dataLoaded(tmdbId)) {
       return;
     }
@@ -122,7 +119,9 @@ Person.defaultProps = {
   requestPersonData: reactUtils.defaultPropsFunc,
   history: { listen: reactUtils.defaultPropsFunc },
   match: {
-    params: { tmdbId: null }
+    params: {
+      tmdbId: null
+    }
   }
 };
 
