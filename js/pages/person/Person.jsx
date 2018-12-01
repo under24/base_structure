@@ -120,21 +120,15 @@ class Person extends Component {
 
 Person.defaultProps = {
   requestPersonData: reactUtils.defaultPropsFunc,
-  history: {
-    listen: reactUtils.defaultPropsFunc
-  },
+  history: { listen: reactUtils.defaultPropsFunc },
   match: {
-    params: {
-      tmdbId: null
-    }
+    params: { tmdbId: null }
   }
 };
 
 Person.propTypes = {
   requestPersonData: PropTypes.func,
-  history: PropTypes.shape({
-    listen: PropTypes.func
-  }),
+  history: PropTypes.shape({ listen: PropTypes.func }),
   match: PropTypes.shape({
     params: PropTypes.shape({
       tmdbId: PropTypes.string
