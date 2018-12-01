@@ -1,8 +1,8 @@
 import {
-  TMDB_SEARCH_MUTLI_FETCHING,
-  TMDB_SEARCH_MUTLI_FETCHED,
-  TMDB_SEARCH_MUTLI_WAITING,
-  TMDB_SEARCH_MUTLI_ERROR
+  TMDB_SEARCH_MULTI_FETCHING,
+  TMDB_SEARCH_MULTI_FETCHED,
+  TMDB_SEARCH_MULTI_WAITING,
+  TMDB_SEARCH_MULTI_ERROR
 } from '../actions/search';
 
 const initState = {
@@ -16,10 +16,10 @@ const initState = {
 
 export const searchReducer = (state = initState, action) => {
   switch (action.type) {
-    case TMDB_SEARCH_MUTLI_FETCHING: {
+    case TMDB_SEARCH_MULTI_FETCHING: {
       return { ...state, ...action.payload };
     }
-    case TMDB_SEARCH_MUTLI_FETCHED: {
+    case TMDB_SEARCH_MULTI_FETCHED: {
       const searchQuery = action.payload.searchQuery;
 
       // wrong data response
@@ -31,10 +31,10 @@ export const searchReducer = (state = initState, action) => {
       // correct data response
       return { ...state, ...action.payload };
     }
-    case TMDB_SEARCH_MUTLI_WAITING: {
+    case TMDB_SEARCH_MULTI_WAITING: {
       return { ...state, ...action.payload };
     }
-    case TMDB_SEARCH_MUTLI_ERROR: {
+    case TMDB_SEARCH_MULTI_ERROR: {
       debugger;
       return state;
     }

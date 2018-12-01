@@ -1,13 +1,13 @@
 import utils from '../../utils/actionCreatorsUtils';
 import {
-  TMDB_SEARCH_MUTLI_FETCHING,
-  TMDB_SEARCH_MUTLI_FETCHED,
-  TMDB_SEARCH_MUTLI_WAITING,
-  TMDB_SEARCH_MUTLI_ERROR
+  TMDB_SEARCH_MULTI_FETCHING,
+  TMDB_SEARCH_MULTI_FETCHED,
+  TMDB_SEARCH_MULTI_WAITING,
+  TMDB_SEARCH_MULTI_ERROR
 } from '../actions/search';
 
 export const tmdbSearchMultiWaiting = searchQuery => ({
-  type: TMDB_SEARCH_MUTLI_WAITING,
+  type: TMDB_SEARCH_MULTI_WAITING,
   payload: {
     searchQuery,
     status: 'waiting'
@@ -15,7 +15,7 @@ export const tmdbSearchMultiWaiting = searchQuery => ({
 });
 
 export const tmdbSearchMultiFetching = searchQuery => ({
-  type: TMDB_SEARCH_MUTLI_FETCHING,
+  type: TMDB_SEARCH_MULTI_FETCHING,
   payload: {
     searchQuery,
     status: 'fetching'
@@ -23,7 +23,7 @@ export const tmdbSearchMultiFetching = searchQuery => ({
 });
 
 export const tmdbSearchMultiFetched = (data, searchQuery) => ({
-  type: TMDB_SEARCH_MUTLI_FETCHED,
+  type: TMDB_SEARCH_MULTI_FETCHED,
   payload: {
     page: data.page,
     results: data.results.map(utils.formatSearchMultiObject.bind(utils)),
