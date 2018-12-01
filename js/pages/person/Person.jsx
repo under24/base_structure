@@ -12,6 +12,7 @@ import StickyContainer from '../../components/StickyContainer';
 // import PersonPopular from '../../components/person/PersonPopular';
 // import RecentlyViewed from '../../components/RecentlyViewed';
 import PersonPageCarousel from '../../components/person/PersonPageCarousel';
+import scrollUtils from '../../utils/scrollUtils';
 import reactUtils from '../../utils/reactUtils';
 import './Person.scss';
 
@@ -22,12 +23,14 @@ class Person extends Component {
   // when urls changes then request new data
   componentWillMount() {
     this.unlisten = this.props.history.listen(() => {
+      scrollUtils.scrollToTop();
       setTimeout(() => this.processPersonData());
     });
   }
 
   // request movie data on init
   componentDidMount() {
+    scrollUtils.scrollToTop();
     this.processPersonData();
   }
 
