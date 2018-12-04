@@ -39,7 +39,7 @@ class SearchInput extends Component {
 
   redirectToSearchPage = event => {
     event.preventDefault();
-    this.props.history.push(`/search/${this.props.searchQuery}`);
+    this.props.history.push(`/search?q=${this.props.searchQuery}`);
   };
 
   render() {

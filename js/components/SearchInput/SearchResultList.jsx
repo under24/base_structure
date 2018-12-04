@@ -12,7 +12,7 @@ class SearchResultList extends Component {
     if (this.props.results.length > 6) {
       showAll = (
         <div className="SearchResultList__show-all">
-          <Link to={`/search/${this.props.searchQuery}`}>
+          <Link to={`/search?q=${this.props.searchQuery}`}>
             Показать остальные<sup>{this.props.totalResults - 6}</sup>
           </Link>
         </div>
