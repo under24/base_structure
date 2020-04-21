@@ -1,0 +1,17 @@
+.Scores {
+    &__entity {
+        position: relative;
+    }
+
+    input[type=number] {
+        position: absolute;
+        right: 0;
+        border: 1px solid #80808026;
+        border-right-color: red;
+        border-left-color: red;
+    }
+
+    input:valid {
+        border: 1px solid #80808026;
+    }
+}
