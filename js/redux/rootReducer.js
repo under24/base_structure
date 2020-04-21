@@ -1,17 +1,10 @@
 import { combineReducers } from 'redux';
-import { moviesReducer } from './reducers/movies';
-import { peopleReducer } from './reducers/people';
-import { personReducer } from './reducers/person';
-import { metadataReducer } from './reducers/metadata';
-import { searchReducer } from './reducers/search';
+import { teamsReducer } from './reducers/teams';
+import { judgesReducer } from './reducers/judges';
 
 const rootReducer = combineReducers({
-  movies: moviesReducer,
-  people: peopleReducer,
-  person: personReducer,
-  // shows: showsReducer
-  metadata: metadataReducer,
-  search: searchReducer
+  teams: teamsReducer,
+  judges: judgesReducer
 });
 
 export default rootReducer;

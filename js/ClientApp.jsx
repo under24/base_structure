@@ -6,9 +6,9 @@ import App from './App';
 // window.Perf = Perf;
 // Perf.start();
 
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
+// if ('scrollRestoration' in history) {
+//   history.scrollRestoration = 'manual';
+// }
 
 const renderApp = () => {
   render(<App />, document.getElementById('root'));
